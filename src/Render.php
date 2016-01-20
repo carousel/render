@@ -1,32 +1,31 @@
-<?php
-namespace Carousel;
+    <?php
 
         class Render
         {
-            public $template;
+            public $view;
             public $public_path = __DIR__.'/views/';
             public $data;
             public $content;
-            public $quotes = '{{}}';
-            public function __construct($template)
+            public $tags = ['|:',':|'];
+            public function __construct($view)
             {
-                $this->template = $this->public_path.$template;
+                $this->view = $this->public_path . $view;
             }
             public function render()
             {
-                $template = file_get_contents($this->template);
+                $view = file_get_contents($this->view);
                 if (isset($this->data)) {
-                    $pattern = '(['.$this->quotes.']+)';
-                    $this->content = preg_replace($pattern, $this->data, $template);
+                    $pattern = '/\|\:\$' . $this->data[0] . '\:\|/';
+                    $this->content = preg_replace($pattern, $this->data[1], $view);
                 } else {
-                    $this->clean($template);
+                    $this->clean($view);
                 }
             }
-            public function clean($template)
+            public function clean($view)
             {
-                $pattern = '(['.$this->quotes.']+)';
-                $template = preg_replace($pattern, '', $template);
-                $this->content = $template;
+                //$pattern = '(['.$this->tags[0] .$this->tags[1] . ']+)';
+                //$view = preg_replace($pattern, '', $view);
+                //$this->content = $view;
             }
             public function make($data = null)
             {
@@ -39,5 +38,6 @@ namespace Carousel;
                 echo $this->content;
             }
         }
-        $view = new Render('index.render.php');
-        $view->make('Paragraph');
+        $view = new Render('master.php');
+        $title = 'Hello World';
+        $view->make(['title',$title]);
