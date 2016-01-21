@@ -3,7 +3,8 @@
     "type": "library",
     "description": "PHP templating engine",
     "keywords": [
-        "carousel",
+        "templating",
+        "engine",
         "render"
     ],
     "homepage": "https://github.com/carousel/render",
@@ -27,12 +28,18 @@
     "autoload": {
         "psr-4": {
             "Carousel\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
-            "Carousel\\Render\\Test\\": "tests"
-        }
+            "Carousel\\RenderTest\\": "tests"
+        },
+        "files": [
+            "src/helpers/functions.php"
+        ]
     },
     "scripts": {
         "test": "phpunit"
