@@ -1,4 +1,5 @@
 ##PHP templating engine
+[![Build Status](https://travis-ci.org/carousel/render.svg?branch=master)](https://travis-ci.org/carousel/render)
 
 miroslav.trninic@gmail.com
 
